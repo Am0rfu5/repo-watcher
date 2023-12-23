@@ -1,5 +1,5 @@
 [package]
-name = "github-watcher"
+name = "repo-watcher"
 version = "0.1.0"
 edition = "2021"
 
@@ -10,5 +10,3 @@ anyhow = "1.0.76"
 clap = { version = "4.4.11", features = ["derive"] }
 dotenv = "0.15.0"
 git2 = "0.18.1"
-reqwest = "0.11.23"
-serde_json = "1.0.108"

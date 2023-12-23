@@ -1,4 +1,6 @@
 /target
 /test
 .vscode
-test_repo
+test_repo.git
+test_repo2.git
+.env

@@ -1,13 +1,35 @@
-# Github Watcher
+# Git Watcher
 
-Watches a github repo/branch and either pulls or fetches when new commits are merged.
+Checks a git remote repo for new commits and if it has changed, pulls it to local.
+
+Why? I needed to have regular updates on a server based on new commits in a remote repository. It could be done other ways (API, hooks) but this was a quick and dirty rust app that does just the one thing.
 
 ## Installation
 
+Requires [Rust](https://www.rust-lang.org/tools/install)
+Requires local and remote git repositories
 
+1. Clone the repo
+2. Build the app
+
+```bash
+cargo build --release
+```
+3. Link to or move the git_watcher file from the `target` directory into your application PATH
 
 ## Usage
 
+Create a cron job or scheduler job that runs as often as you think is necessary.  The git_watcher command takes arguments for your the path to your local repo(-l, --local_path), remote(-r, --remote) and branch(-b, --branch). 
 
+Example:
+```bash
+git_watcher -l /path/to/repo -r origin -b master
+```
 
-## Contribution
+## Contribution & Support
+
+Of course. And create and issue if you find some room for improvement.
+
+## License
+
+Licensed under the MIT License - see the [LICENSE](LICENSE.md) file.

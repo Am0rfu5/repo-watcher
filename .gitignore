@@ -1,1 +1,4 @@
 /target
+/test
+.vscode
+test_repo

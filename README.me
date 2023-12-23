@@ -1,4 +1,4 @@
-# Git Watcher
+# Repo-Watcher
 
 Checks a git remote repo for new commits and if it has changed, pulls it to local.
 
@@ -15,7 +15,7 @@ Requires local and remote git repositories
 ```bash
 cargo build --release
 ```
-3. Link to or move the git_watcher file from the `target` directory into your application PATH
+3. Link to or move the repo-watcher file from the `target` directory into your application PATH
 
 ## Usage
 
@@ -23,7 +23,7 @@ Create a cron job or scheduler job that runs as often as you think is necessary.
 
 Example:
 ```bash
-git_watcher -l /path/to/repo -r origin -b master
+repo-watcher -l /path/to/repo -r origin -b master
 ```
 
 ## Contribution & Support

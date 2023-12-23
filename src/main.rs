@@ -29,41 +29,8 @@ struct Cli {
 
     /// Path to the .env file
     #[clap(short, long, value_parser)]
-    env_file: Option<PathBuf>,
-        
+    env_file: Option<PathBuf>,        
 }
-
-// fn validate_args(args: &Cli) -> Result<()> {
-//     // Check if local_path exists and is a directory
-//     if !args.local_path.exists() {
-//         eprintln!("Error: Path does not exist");
-//         process::exit(1);
-//     }
-//     if !args.local_path.is_dir() {
-//         eprintln!("Error: Path is not a directory");
-//         process::exit(1);
-//     }
-
-//     // Validate local_path is a Git repo
-//     let repo = Repository::open(&args.local_path)
-//         .map_err(|e| {
-//             anyhow!("Error: Path is not a valid Git repository: {}", e)
-//         })?;
-
-//     // Validate branch is a valid branch for the local_path repo
-//     repo.find_branch(&args.branch, git2::BranchType::Local)
-//         .map_err(|_| {
-//             anyhow!("Error: Branch '{}' is not a valid branch for the given Git repository", args.branch)
-//         })?;
-        
-//     // Validate remote is a valid remote for the given Git repo
-//     repo.find_remote(&args.remote)
-//         .map_err(|_| {
-//             anyhow!("Error: Remote '{}' is not a valid remote for the given Git repository", args.remote)
-//         })?;
-
-//     Ok(())
-// }
 
 fn fetch_latest_commit_sha(local_path: &Path, ssh_key_path: &Path, remote: &str, branch: &str) -> Result<String, Error> {
     let repo = Repository::open(local_path)?;
@@ -171,22 +138,18 @@ mod tests {
         
         
         Cli {
-            local_path: Some(PathBuf::from(env::var("LOCAL_PATH").expect("Local path not set"))),
+            local_path: Some(&local_path),
             remote: Some("github".to_string()),
             branch: Some("master".to_string()),
             ssh_key_path: Some(PathBuf::from("test_key")),
             env_file: None,
         }
-    
+        // TODO: break out args||env vars into separate function so that it can be reused in tests
+        // TODO: too many values being passed to functions, need to refactor
+        // TODO: mock git2::Repository for tests
+        // TODO: mock git2::Remote for tests
+        
     }
-    
-    // #[test]
-    // fn test_validate_args_valid() {
-    //     // Test with valid arguments
-    //     let args = _test_values();
-    //     assert!(validate_args(&args).is_ok());
-
-    // }
     
     #[test]
     fn test_pull_repo() {
